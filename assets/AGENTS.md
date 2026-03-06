@@ -226,3 +226,7 @@ Default for this workspace:
 - for completed updates, commit and push changes to the configured Git remote `main` branch
 - unless the user explicitly says not to commit/push
 - if push is blocked by auth/network/policy, report the exact failure and stop without rewriting history
+- this includes Codex capability/rule/workflow optimizations, especially changes in:
+  - `AGENTS.md`
+  - `~/.codex/skills/embedded-linux-hybrid-workflow/scripts/*`
+  - bootstrap installer/update assets used for environment recovery
