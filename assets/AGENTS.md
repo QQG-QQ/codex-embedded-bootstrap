@@ -223,10 +223,8 @@ For cross-layer changes, consult:
 ## Git Sync Policy
 
 Default for this workspace:
-- for completed updates, commit and push changes to the configured Git remote `main` branch
-- unless the user explicitly says not to commit/push
+- only Codex capability/rule/workflow optimization updates are auto committed and pushed to `main`
+- optimization scope includes `AGENTS.md`, `~/.codex/skills/embedded-linux-hybrid-workflow/scripts/*`, and bootstrap installer/update assets
+- regular project feature/bugfix code changes are not auto pushed unless the user explicitly requests commit/push
+- for optimization updates, if the user explicitly says not to commit/push, do not push
 - if push is blocked by auth/network/policy, report the exact failure and stop without rewriting history
-- this includes Codex capability/rule/workflow optimizations, especially changes in:
-  - `AGENTS.md`
-  - `~/.codex/skills/embedded-linux-hybrid-workflow/scripts/*`
-  - bootstrap installer/update assets used for environment recovery
