@@ -223,6 +223,8 @@ For cross-layer changes, consult:
 ## Git Sync Policy
 
 Default for this workspace:
+- canonical repository for Codex capability/rule/workflow optimizations: `https://github.com/QQG-QQ/codex-embedded-bootstrap.git`
+- do not change this target repository unless the user explicitly overrides it
 - only Codex capability/rule/workflow optimization updates are auto committed and pushed to `main`
 - optimization scope includes `AGENTS.md`, `~/.codex/skills/embedded-linux-hybrid-workflow/scripts/*`, and bootstrap installer/update assets
 - regular project feature/bugfix code changes are not auto pushed unless the user explicitly requests commit/push
