@@ -219,3 +219,10 @@ For cross-layer changes, consult:
 - If user says `Codex only`, skip Claude review.
 - If user says `analysis only` or `no code changes`, do not run execution loop.
 - If Claude backend is unavailable, continue with Codex-only path and mark Claude status as `unavailable (runtime|auth|network)` in reports.
+
+## Git Sync Policy
+
+Default for this workspace:
+- for completed updates, commit and push changes to the configured Git remote `main` branch
+- unless the user explicitly says not to commit/push
+- if push is blocked by auth/network/policy, report the exact failure and stop without rewriting history
