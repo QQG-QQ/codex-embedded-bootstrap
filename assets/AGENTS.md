@@ -227,6 +227,7 @@ Default for this workspace:
 - do not change this target repository unless the user explicitly overrides it
 - only Codex capability/rule/workflow optimization updates are auto committed and pushed to `main`
 - optimization scope includes `AGENTS.md`, `~/.codex/skills/embedded-linux-hybrid-workflow/scripts/*`, and bootstrap installer/update assets
+- all Git commit messages and related submission descriptions must be written in Chinese
 - regular project feature/bugfix code changes are not auto pushed unless the user explicitly requests commit/push
 - for optimization updates, if the user explicitly says not to commit/push, do not push
 - if push is blocked by auth/network/policy, report the exact failure and stop without rewriting history
