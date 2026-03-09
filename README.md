@@ -57,6 +57,46 @@ bash install.sh --workspace /data/test --codex-home /path/to/.codex
 bash update.sh --workspace /data/test
 ```
 
+## Windows + VSCode/Codex
+
+如果你在 Windows 本机上使用 VSCode 的 Codex 扩展，推荐直接使用 PowerShell 安装脚本：
+
+```powershell
+git clone https://github.com/QQG-QQ/codex-embedded-bootstrap.git
+cd codex-embedded-bootstrap
+.\install.ps1 -Workspace E:\project
+```
+
+或在 `cmd.exe` 中使用包装器：
+
+```cmd
+git clone https://github.com/QQG-QQ/codex-embedded-bootstrap.git
+cd codex-embedded-bootstrap
+install.cmd -Workspace E:\project
+```
+
+更新现有安装：
+
+```powershell
+.\update.ps1 -Workspace E:\project
+```
+
+```cmd
+update.cmd -Workspace E:\project
+```
+
+Windows 默认会把 skill 安装到：
+
+```text
+%USERPROFILE%\.codex\skills\embedded-linux-hybrid-workflow
+```
+
+注意：
+
+- 安装脚本会把 `assets/AGENTS.md` 渲染成当前平台路径后写入 `<workspace>\AGENTS.md`
+- Windows 下如果 `codex` 尚未安装，会通过 `npm install -g @openai/codex` 安装
+- `embedded-linux-hybrid-workflow` 的执行脚本仍然是 `.sh`，Windows 上调用这些脚本前请安装 Git Bash 或使用 WSL
+
 ## 备份位置
 
 每次安装会生成备份目录：
@@ -75,9 +115,16 @@ ls ~/.codex/skills/embedded-linux-hybrid-workflow/scripts
 sed -n '1,40p' /data/test/AGENTS.md
 ```
 
+Windows 可以这样验证：
+
+```powershell
+codex --version
+Get-ChildItem $env:USERPROFILE\.codex\skills\embedded-linux-hybrid-workflow\scripts
+Get-Content E:\project\AGENTS.md -Head 40
+```
+
 ## 注意事项
 
 - `install.sh` 会覆盖目标工作区的 `AGENTS.md`（先备份后覆盖）。
 - `install.sh` 会替换同名 skill 目录（先备份后替换）。
 - 如果你使用 SSH 访问 GitHub，建议把仓库远端改为 `git@github.com:QQG-QQ/codex-embedded-bootstrap.git`。
-

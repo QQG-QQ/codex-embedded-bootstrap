@@ -38,7 +38,7 @@ Expectations:
 Preferred one-command orchestration:
 
 ```bash
-bash /home/ameba_builder/.codex/skills/embedded-linux-hybrid-workflow/scripts/hybrid-run.sh \
+bash __CODEX_HOME__/skills/embedded-linux-hybrid-workflow/scripts/hybrid-run.sh \
   --build "<build_cmd>" \
   --test "<test_cmd>"
 ```
@@ -127,7 +127,7 @@ Default behavior:
 Recommended runner:
 
 ```bash
-bash /home/ameba_builder/.codex/skills/embedded-linux-hybrid-workflow/scripts/run-codex-ci-loop.sh \
+bash __CODEX_HOME__/skills/embedded-linux-hybrid-workflow/scripts/run-codex-ci-loop.sh \
   --max-retries 1 \
   --retry-delay 5 \
   "<build_cmd>" "<test_cmd>" [output_dir]
@@ -165,8 +165,8 @@ Do not invoke Claude review for Tier 0 unless user explicitly requests it.
 Default review flow:
 
 ```bash
-bash /home/ameba_builder/.codex/skills/embedded-linux-hybrid-workflow/scripts/prepare-review-bundle.sh [output_dir] [base_ref]
-bash /home/ameba_builder/.codex/skills/embedded-linux-hybrid-workflow/scripts/request-claude-architecture-review.sh [bundle_dir] [focus]
+bash __CODEX_HOME__/skills/embedded-linux-hybrid-workflow/scripts/prepare-review-bundle.sh [output_dir] [base_ref]
+bash __CODEX_HOME__/skills/embedded-linux-hybrid-workflow/scripts/request-claude-architecture-review.sh [bundle_dir] [focus]
 ```
 
 ## AI-Assisted Coding Guardrails
@@ -212,7 +212,7 @@ For non-trivial tasks, final output should include:
 
 For cross-layer changes, consult:
 
-`/home/ameba_builder/.codex/skills/embedded-linux-hybrid-workflow/references/embedded-linux-checklist.md`
+`__CODEX_HOME__/skills/embedded-linux-hybrid-workflow/references/embedded-linux-checklist.md`
 
 ## Override Rules
 

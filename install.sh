@@ -71,6 +71,13 @@ require_cmd() {
   fi
 }
 
+render_agents() {
+  local dst="$1"
+  local escaped_codex_home
+  escaped_codex_home="$(printf '%s' "$codex_home" | sed 's/[\/&]/\\&/g')"
+  sed "s|__CODEX_HOME__|$escaped_codex_home|g" "$agents_src" > "$dst"
+}
+
 install_codex_cli() {
   if command -v codex >/dev/null 2>&1; then
     echo "[ok] codex already installed: $(codex --version 2>/dev/null || echo unknown)"
@@ -113,7 +120,7 @@ sync_configs() {
   backup_if_exists "$agents_dst" "$backup_root/AGENTS.md"
   backup_if_exists "$skill_dst" "$backup_root/skills/$skill_name"
 
-  cp -a "$agents_src" "$agents_dst"
+  render_agents "$agents_dst"
   rm -rf "$skill_dst"
   cp -a "$skill_src" "$skill_dst"
   find "$skill_dst/scripts" -type f -name '*.sh' -exec chmod +x {} \;
@@ -132,4 +139,3 @@ echo "workspace: $workspace"
 echo "codex_home: $codex_home"
 echo "backup: $backup_root"
 echo "next: run 'codex login'"
-
