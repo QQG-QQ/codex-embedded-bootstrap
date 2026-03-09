@@ -94,7 +94,8 @@ function Render-Agents {
 
   $content = Get-Content -Raw -Path $agentsSrc
   $rendered = $content.Replace("__CODEX_HOME__", ($CodexHome -replace "\\", "/"))
-  Set-Content -Path $Destination -Value $rendered -Encoding utf8NoBOM
+  $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
+  [System.IO.File]::WriteAllText($Destination, $rendered, $utf8NoBom)
 }
 
 function Sync-Configs {
