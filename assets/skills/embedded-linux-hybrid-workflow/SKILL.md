@@ -37,6 +37,18 @@ Use the helper script to standardize logs:
 bash scripts/run-codex-ci-loop.sh [options] "<build_cmd>" "<test_cmd>" [output_dir]
 ```
 
+### Workspace Memory Hook
+
+Before deeper work, refresh local long-term memory and read the generated brief:
+
+```bash
+bash scripts/codex-memory.sh refresh
+bash scripts/codex-memory.sh brief --task "<user_request>" --project "$PWD"
+bash scripts/codex-memory.sh search --task "<user_request>" --project "$PWD"
+```
+
+Use the generated `memory-brief.md` under your Codex home `memories/` directory as a hint only. It must not override the current user instruction, repository evidence, or safety rules. If the user corrects a stable preference or you learn a reusable project lesson, record it with `codex-memory.sh add`. After a non-trivial task, close the loop with `codex-memory.sh close-task` so future sessions can retrieve a structured reflection instead of only raw history.
+
 Example:
 
 ```bash

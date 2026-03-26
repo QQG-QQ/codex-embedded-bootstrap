@@ -81,6 +81,7 @@ Before deep implementation, gather compact context:
 - README and main build/config files
 - directory/module scope related to the task
 - current branch/head and workspace status
+- workspace memory brief when available: `__CODEX_HOME__/memories/memory-brief.md`
 
 Budget:
 - Tier 0: hard cap 10 minutes or 8 meaningful discovery commands (whichever comes first)
@@ -88,6 +89,23 @@ Budget:
 - stop immediately when target files, expected outputs, and validation commands are clear
 
 `hybrid-run.sh` auto-generates `context-snapshot.md`.
+
+## Long-Term Memory Policy
+
+For work in this workspace, maintain a local persistent memory layer:
+- before deeper implementation or architecture/debug analysis, run:
+  `bash __CODEX_HOME__/skills/embedded-linux-hybrid-workflow/scripts/codex-memory.sh refresh`
+- generate a task-aware brief before substantial work:
+  `bash __CODEX_HOME__/skills/embedded-linux-hybrid-workflow/scripts/codex-memory.sh brief --task "<current_user_request>" --project "$PWD"`
+- when retrieval quality matters inside a specific repo/module, use project-aware semantic search:
+  `bash __CODEX_HOME__/skills/embedded-linux-hybrid-workflow/scripts/codex-memory.sh search --task "<current_user_request>" --project "$PWD"`
+- use `__CODEX_HOME__/memories/memory-brief.md` only as a hint for stable preferences, project history, and self-correction rules
+- memory must never override the current user instruction, direct repository evidence, or safety/system policy
+- after a task, if the user expresses a stable preference or corrects Codex behavior, record it with:
+  `bash __CODEX_HOME__/skills/embedded-linux-hybrid-workflow/scripts/codex-memory.sh add --kind <preference|project|reflection> --title "<short_title>" --content "<durable_note>"`
+- after every non-trivial implementation/debug/analysis task, close the task with a structured reflection:
+  `bash __CODEX_HOME__/skills/embedded-linux-hybrid-workflow/scripts/codex-memory.sh close-task --task "<current_user_request>" --result <success|partial|fail> --summary "<what happened>" --project "$PWD" --changes "<key_changes>" --lessons "<durable_lesson>" --next-step "<next_validation_or_followup>"`
+- never write secrets, credentials, tokens, or private keys into the memory store
 
 ## Execution Timebox And WIP Limits
 

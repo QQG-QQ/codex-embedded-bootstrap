@@ -9,6 +9,7 @@
 - 安装嵌入式混合工作流技能到 `~/.codex/skills/embedded-linux-hybrid-workflow`
 - 将仓库内的 `AGENTS.md` 同步到你指定的工作区
 - 自动备份你已有的 `AGENTS.md` 和同名 skill 目录
+- 提供本地长期记忆脚本，支持历史归档、项目语义检索和任务结束 reflection
 
 ## 目录说明
 
@@ -56,6 +57,19 @@ bash install.sh --workspace /data/test --codex-home /path/to/.codex
 ```bash
 bash update.sh --workspace /data/test
 ```
+
+## 长期记忆命令
+
+安装完成后，可直接使用：
+
+```bash
+bash ~/.codex/skills/embedded-linux-hybrid-workflow/scripts/codex-memory.sh refresh
+bash ~/.codex/skills/embedded-linux-hybrid-workflow/scripts/codex-memory.sh brief --task "修复 AirPlay 停顿" --project /data/test/airplay-audio
+bash ~/.codex/skills/embedded-linux-hybrid-workflow/scripts/codex-memory.sh search --task "AirPlay 停顿 ALSA 缓冲" --project /data/test/airplay-audio
+bash ~/.codex/skills/embedded-linux-hybrid-workflow/scripts/codex-memory.sh close-task --task "修复 AirPlay 停顿" --result success --summary "定位到缓冲配置问题并修正" --project /data/test/airplay-audio --lessons "音频链路问题优先保留根因和验证命令"
+```
+
+这些命令会把数据写到 `~/.codex/memories/`，用于后续会话读取稳定偏好、项目经验和结构化反思。
 
 ## Windows + VSCode/Codex
 
