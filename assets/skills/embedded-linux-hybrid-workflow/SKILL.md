@@ -23,10 +23,17 @@ Before editing, collect a compact context snapshot:
 
 `hybrid-run.sh` does this automatically and writes `context-snapshot.md`.
 
+For non-trivial work, add a short pre-edit decision snapshot:
+- requested outcome and concrete success signal
+- assumptions and unknowns, especially API, ABI, config, or hardware constraints
+- smallest reversible implementation path and what stays out of scope
+- validation command or log evidence that will prove the change
+
 ### Step 1: Codex Executes Changes and CI Loop (Primary Engine)
 
 Codex performs implementation and debugging directly in the workspace:
-- apply focused code edits
+- reproduce or isolate the observed failure before changing behavior when feasible
+- apply focused code edits; every changed line must trace to the request, validation, or cleanup caused by this task
 - run build and test commands
 - iterate until commands pass
 - keep changes reviewable and minimal
@@ -148,6 +155,10 @@ At completion, provide:
 
 - Do not submit a patch with failing build/test unless explicitly requested.
 - Keep each patch focused on one problem area when possible.
+- Prefer the simplest implementation that satisfies current evidence; do not add speculative abstraction, configurability, or future-proofing.
+- Do not refactor, reformat, or clean adjacent code unrelated to the requested change.
+- If you find unrelated issues, report them as follow-up instead of drive-by fixing them.
+- If API semantics, ABI compatibility, hardware constraints, or build ownership are unclear, ask or label the assumption before editing.
 - If Claude review conflicts with repository constraints, prioritize repository reality and explain the tradeoff.
 - For cross-layer embedded changes, use [references/embedded-linux-checklist.md](references/embedded-linux-checklist.md).
 - For tasks spanning multiple files/layers, enumerate requirements and test scenarios (happy/edge/error/state) before claiming completion.
