@@ -95,6 +95,7 @@ Bundle outputs include:
 - `changed-files.txt`
 - `diffstat.txt`
 - `module-roots.txt`
+- `diff-hygiene.md`
 - `review-input.md`
 
 ### Step 3: Ask Claude for Architecture/Refactor Review (Secondary Engine)
@@ -147,6 +148,7 @@ This orchestrates:
 At completion, provide:
 - passing build/test summary (`run-codex-ci-loop` output)
 - patch artifact (`changes.diff`)
+- diff hygiene warnings (`diff-hygiene.md`)
 - Claude architecture review markdown
 - final change summary with risks and follow-up actions
 - explicit assumptions and unresolved unknowns
